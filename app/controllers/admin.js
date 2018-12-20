@@ -14,25 +14,13 @@ module.exports.login = function(app, req, res){
 }
 
 module.exports.administrador = function(app, req, res){
-//req.session = {};
-  //caso esta variavel não esteja na sessão o mesmo não acessa a pagina
-
-
-
- if (req.session.autorizado != undefined) {
-   res.render("lanchonete/admin_lanchonete");
-      console.log("oi1"+req.session.autorizado);
-   }else {
-         res.render('lanchonete/login');
-       console.log("oi2"+req.session.autorizado);
+//caso esta variavel não esteja na sessão o mesmo não acessa a pagina
+     if (req.session.autorizado != undefined) {
+       res.render("lanchonete/admin_lanchonete");
+         }else {
+             res.render('lanchonete/login');
+           }
      }
-
-
-
-}
-
-
-
 module.exports.autenticar = function(app, req, res){
   var logar = req.body;
   var connection2 = app.infra.connectionFactory();
@@ -55,11 +43,10 @@ module.exports.autenticar = function(app, req, res){
     }
      if (req.session.autorizado) {
          res.redirect("/admin_lanchonete");
-        // console.log(req.session.autorizado);
+
      }else {
          res.redirect("/login");
-        // console.log(req.session.autorizado);
-     }
+       }
 
   });
 
@@ -71,6 +58,4 @@ module.exports.deslogar = function(aplication, req, res){
        return res.status(200).send();
       });
         res.redirect("/index");
-        console.log("oi3" + req.session.autorizado);
-
-}
+      }

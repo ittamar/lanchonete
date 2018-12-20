@@ -8,12 +8,10 @@ module.exports=function(app){
   app.get('/admin_lanchonete',function(req,res){
       //mapeamento do controller
     app.controllers.admin.administrador(app, req,res);
-    if(req.session.autorizado==undefined){
-    }
+    /*if(req.session.autorizado==undefined){
+    }*/
 
   });
 
-
-
-
+  
 };
